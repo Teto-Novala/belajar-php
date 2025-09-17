@@ -7,9 +7,13 @@
 </head>
 <body>
     <?php include "layout/header.html"?>
-    <main>
-        <p>selamat datang</p>
-    </main>
+    
+    <h3>Masuk Akun</h3>
+    <form action="">
+        <input type="text" placeholder="username" name="username">
+        <input type="password" placeholder="password" name="password">
+        <button type="button">Masuk</button>
+    </form>
     
     <?php include "layout/footer.html"?>
 </body>
