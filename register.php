@@ -1,5 +1,12 @@
 <?php
 include "service/database.php";
+session_start();
+
+$register_message = "";
+
+if(isset($_SESSION["is_login"])){
+    header("location: dashboard.php");
+}
 
 if(isset($_POST['register'])){
     $username = $_POST['username'];
@@ -8,9 +15,9 @@ if(isset($_POST['register'])){
     $sql = "INSERT INTO users (username,password) VALUES ('$username','$password')";
 
     if ($db->query($sql)){
-        echo "Berhasil";
+        $register_message = "silahkan login";
     }else {
-        echo "gagal";
+        $register_message = "daftar akun gagal";
     }
 }
 ?>
@@ -26,6 +33,7 @@ if(isset($_POST['register'])){
     <?php include "layout/header.html"?>
     
     <h3>Daftar Akun</h3>
+    <i><?= $register_message ?></i>
     <form action="register.php" method="POST">
         <input type="text" placeholder="username" name="username">
         <input type="password" placeholder="password" name="password">
