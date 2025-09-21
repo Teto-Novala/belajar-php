@@ -4,9 +4,18 @@ include "service/database.php";
 if(isset($_POST['login'])){
     $username = $_POST['username'];
     $password = $_POST['password'];
-    echo $username;
-     echo " ";
-    echo $password;
+
+    $sql = "SELECT * FROM users WHERE username='$username' AND password='$password'";
+
+    $result = $db->query($sql);
+
+    if($result->num_rows > 0){
+        $data = $result->fetch_assoc();
+        echo "data username adalah " . $data['username'];
+        echo "data password adalah " . $data['password'];
+    }else{
+        echo "gak ada";
+    };
 }
 ?>
 
